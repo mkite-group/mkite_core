@@ -1,5 +1,5 @@
 <div align="center">
-  <img src=docs/_static/mkite-core.png width="300"><br>
+  <img src="https://raw.githubusercontent.com/mkite-group/mkite_core/main/docs/_static/mkite-core.png" width="300"><br>
 </div>
 
 # mkite-core: essentials for mkite
