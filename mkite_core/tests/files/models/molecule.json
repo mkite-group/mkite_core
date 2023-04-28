@@ -1,0 +1,37 @@
+{
+    "parentjob": {
+        "experiment": {
+            "name": "gen_mol",
+            "description": "test",
+            "project": {"name": "mols", "description": "test"}
+        },
+        "recipe": {
+            "name": "mol_generator",
+            "package": {
+                "name": "generator",
+                "version": "1.0"
+            },
+            "method": "FT"
+        },
+        "status": "D",
+        "@module": "mkite.orm.jobs.models",
+        "@class": "Job"
+    },
+    "formula": {
+        "name": "C9 H8 O4 +0",
+        "charge": 0,
+        "@module": "mkite.orm.base.models",
+        "@class": "Formula"
+    },
+    "family": {
+        "name": "test_family",
+        "description": "family for molecule testing",
+        "@module": "mkite.orm.mols.models",
+        "@class": "MolFamily"
+    },
+    "attributes": {},
+    "inchikey": "BSYNRYMUTXBXSQ-UHFFFAOYSA-N",
+    "smiles": "CC(=O)OC1=CC=CC=C1C(=O)O",
+    "@module": "mkite.orm.mols.models",
+    "@class": "Molecule"
+}

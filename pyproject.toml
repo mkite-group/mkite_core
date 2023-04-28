@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mkite_core"
+version = "0.1.0"
+description = "distributed computing for high-throughput materials simulation"
+authors = [{name = "Daniel Schwalbe-Koda", email = "dskoda@llnl.gov"}]
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.8"
+keywords = ["feed", "reader", "tutorial"]
+dependencies = [
+    "msgspec >= 0.14.1",
+    "click",
+    "pydantic",
+    "ase",
+    "pymatgen",
+    "rdkit",
+]
+
+[project.urls]
+Homepage = "https://github.com/mkite-group"
+
+[project.scripts]
+kite = "mkite_core.cli.kite:kite"
+
+[tool.setuptools]
+packages = ["mkite_core"]

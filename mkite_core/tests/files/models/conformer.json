@@ -1,0 +1,110 @@
+{
+    "parentjob": {
+        "experiment": {
+            "name": "gen_mol",
+            "description": "test",
+            "project": {"name": "mols", "description": "test"}
+        },
+        "recipe": {
+            "name": "mol_generator",
+            "package": {
+                "name": "generator",
+                "version": "1.0"
+            },
+            "method": "FT"
+        },
+        "status": "D",
+        "@module": "mkite.orm.jobs.models",
+        "@class": "Job"
+    },
+    "formula": {
+        "name": "H20 C8 N1 +1",
+        "charge": 1,
+        "@module": "mkite.orm.base.models",
+        "@class": "Formula"
+    },
+    "mol": {
+        "formula": {
+            "name": "H20 C8 N1 +1",
+            "charge": 1,
+            "@module": "mkite.orm.base.models",
+            "@class": "Formula"
+        },
+        "family": {
+            "name": "test_family",
+            "description": "family for molecule testing",
+            "@module": "mkite.orm.mols.models",
+            "@class": "MolFamily"
+        },
+        "attributes": {},
+        "inchikey": "BSYNRYMUTXBXSQ-UHFFFAOYSA-N",
+        "smiles": "CC(=O)OC1=CC=CC=C1C(=O)O",
+        "@module": "mkite.orm.mols.models",
+        "@class": "Molecule"
+    },
+	"species": [
+		"C",
+		"C",
+		"N",
+		"C",
+		"C",
+		"C",
+		"C",
+		"C",
+		"C",
+		"H",
+		"H",
+		"H",
+		"H",
+		"H",
+		"H",
+		"H",
+		"H",
+		"H",
+		"H",
+		"H",
+		"H",
+		"H",
+		"H",
+		"H",
+		"H",
+		"H",
+		"H",
+		"H",
+		"H"
+    ],
+    "coords": [
+        [2.3554, 0.8348, 0.6631],
+        [1.5219, 0.0296, -0.32],
+        [0.0, 0.0, 0.0],
+        [-0.6558, -0.8654, -1.1138],
+        [-2.1618, -1.0215, -0.9835],
+        [-0.2675, -0.5998, 1.4101],
+        [0.2466, -2.0174, 1.598],
+        [-0.5986, 1.4355, 0.0238],
+        [-0.4401, 2.2042, -1.2776],
+        [2.3048, 0.4326, 1.678],
+        [2.0679, 1.8889, 0.6861],
+        [3.4071, 0.7983, 0.3583],
+        [1.6352, 0.4327, -1.3317],
+        [1.8696, -1.0082, -0.3503],
+        [-0.4044, -0.4055, -2.0752],
+        [-0.1701, -1.8464, -1.0937],
+        [-2.4492, -1.521, -0.0549],
+        [-2.6861, -0.0647, -1.0469],
+        [-2.5322, -1.6425, -1.8067],
+        [-1.3484, -0.563, 1.5809],
+        [0.1933, 0.0706, 2.1429],
+        [0.014, -2.3532, 2.6146],
+        [1.3311, -2.0852, 1.4816],
+        [-0.2272, -2.7256, 0.9136],
+        [-1.6585, 1.3432, 0.2825],
+        [-0.1167, 1.9768, 0.8445],
+        [-0.8889, 3.1974, -1.1662],
+        [-0.9499, 1.7173, -2.1127],
+        [0.6084, 2.3577, -1.5447]],
+    "attributes": {},
+    "siteprops": {},
+    "@module": "mkite.orm.mols.models",
+    "@class": "Conformer"
+}

@@ -1,0 +1,79 @@
+{
+    "job": {
+        "pk": 1,
+        "uuid": "7615c560-962d-4053-8c73-36f313d6fa36",
+        "ctime": "2022-07-23T07:45:47.722708",
+        "project": "test",
+        "experiment": "test01"
+    },
+    "recipe": {
+        "uuid": "f064f0aa-20d3-4d86-82d8-b025fe80a1e3",
+        "name": "test_recipe",
+        "package": "test_package",
+        "method": "FT"
+    },
+    "options": {
+        "INCAR": {
+            "ENCUT": 680
+        }
+    },
+    "inputs": [
+        {
+            "id": 3,
+            "formula": {
+                "id": 4,
+                "name": "Si2 +0",
+                "charge": 0,
+                "@module": "mkite.orm.base.models",
+                "@class": "Formula"
+            },
+            "family": {
+                "name": "test_family",
+                "description": "family for crystal testing",
+                "@module": "mkite.orm.structs.models",
+                "@class": "CrystalFamily"
+            },
+            "uuid": "10ef3aa6-a82d-4d0e-ad0a-80f189ed6b71",
+            "ctime": "2022-08-14T21:29:02.783009Z",
+            "mtime": "2022-08-14T21:29:02.783019Z",
+            "attributes": {},
+            "spacegroup": 227,
+            "species": [
+                "Si",
+                "Si"
+            ],
+            "coords": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    1.365,
+                    1.365,
+                    1.365
+                ]
+            ],
+            "lattice": [
+                [
+                    0,
+                    2.73,
+                    2.73
+                ],
+                [
+                    2.73,
+                    0,
+                    2.73
+                ],
+                [
+                    2.73,
+                    2.73,
+                    0
+                ]
+            ],
+            "parentjob": 3,
+            "@module": "mkite.orm.structs.models",
+            "@class": "Crystal"
+        }
+    ]
+}

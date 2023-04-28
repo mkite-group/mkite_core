@@ -1,0 +1,71 @@
+{
+    "formula": {
+        "id": 4,
+        "name": "Si2 +0",
+        "charge": 0,
+        "@module": "mkite.orm.base.models",
+        "@class": "Formula"
+    },
+    "family": {
+        "name": "test_family",
+        "description": "family for crystal testing",
+        "@module": "mkite.orm.structs.models",
+        "@class": "CrystalFamily"
+    },
+    "attributes": {},
+    "siteprops": {},
+    "spacegroup": 227,
+    "species": [
+        "Si",
+        "Si"
+    ],
+    "coords": [
+        [
+            0,
+            0,
+            0
+        ],
+        [
+            1.365,
+            1.365,
+            1.365
+        ]
+    ],
+    "lattice": [
+        [
+            0,
+            2.73,
+            2.73
+        ],
+        [
+            2.73,
+            0,
+            2.73
+        ],
+        [
+            2.73,
+            2.73,
+            0
+        ]
+    ],
+    "parentjob": {
+        "experiment": {
+            "name": "gen_mol",
+            "description": "test",
+            "project": {"name": "mols", "description": "test"}
+        },
+        "recipe": {
+            "name": "crystal_generator",
+            "package": {
+                "name": "generator",
+                "version": "1.0"
+            },
+            "method": "FT"
+        },
+        "status": "D",
+        "@module": "mkite.orm.jobs.models",
+        "@class": "Job"
+    },
+    "@module": "mkite.orm.structs.models",
+    "@class": "Crystal"
+}

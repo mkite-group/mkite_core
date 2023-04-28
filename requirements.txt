@@ -1,0 +1,6 @@
+click
+pydantic
+msgspec==0.14.1
+ase
+rdkit
+pymatgen
