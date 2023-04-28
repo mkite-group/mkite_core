@@ -10,7 +10,7 @@ authors = [{name = "Daniel Schwalbe-Koda", email = "dskoda@llnl.gov"}]
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.8"
-keywords = ["feed", "reader", "tutorial"]
+keywords = ["workflow", "materials-science"]
 dependencies = [
     "msgspec >= 0.14.1",
     "click",
