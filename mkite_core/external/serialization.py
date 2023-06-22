@@ -1,6 +1,7 @@
 import json
 import numpy as np
 
+
 class NumpyEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, np.ndarray):
@@ -12,4 +13,4 @@ def reserialize(data: dict):
     """Converts numpy arrays into lists when serializing
     a given dictionary"""
     s = json.dumps(data, cls=NumpyEncoder)
-    return json.loads(data)
+    return json.loads(s)

@@ -86,7 +86,7 @@ class CrystalInfo(BaseInfo):
 
     @classmethod
     def from_pymatgen(cls, structure: "pymatgen.core.Structure", **kwargs):
-        from mkite_core.external.json import reserialize
+        from mkite_core.external.serialization import reserialize
 
         return cls(
             lattice=structure.lattice.matrix.tolist(),
