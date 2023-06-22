@@ -86,11 +86,13 @@ class CrystalInfo(BaseInfo):
 
     @classmethod
     def from_pymatgen(cls, structure: "pymatgen.core.Structure", **kwargs):
+        from mkite_core.external.json import reserialize
+
         return cls(
             lattice=structure.lattice.matrix.tolist(),
             species=[str(sp) for sp in structure.species],
             coords=structure.cart_coords.tolist(),
-            siteprops=structure.site_properties,
+            siteprops=reserialize(structure.site_properties),
             **kwargs,
         )
 
