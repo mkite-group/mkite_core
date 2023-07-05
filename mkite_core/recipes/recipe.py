@@ -1,23 +1,25 @@
-import os
 import json
-import socket
+import os
 import shutil
+import socket
+import subprocess
 import tempfile
 import traceback
-import subprocess
-from typing import List
 from abc import abstractmethod
+from typing import List
+
+from mkite_core.models import JobInfo
+from mkite_core.models import JobResults
+from mkite_core.models import RunStatsInfo
+from mkite_engines.status import Status
 from pkg_resources import get_distribution
 
-from mkite_core.models import JobInfo, RunStatsInfo, JobResults
-from mkite_engines.status import Status
-
 from .base import Runnable
-from .settings import EnvSettings
+from .errors import BaseErrorHandler
 from .options import BaseOptions
 from .parser import BaseParser
 from .runner import BaseRunner
-from .errors import BaseErrorHandler
+from .settings import EnvSettings
 
 
 class RecipeError(Exception):
@@ -37,6 +39,7 @@ class PythonRecipe(Runnable):
 
     SETTINGS_CLS: EnvSettings = EnvSettings
     OPTIONS_CLS: BaseOptions = None
+    ERROR_CLS: BaseErrorHandler = None
 
     @abstractmethod
     def run(self) -> JobResults:
@@ -98,6 +101,15 @@ class PythonRecipe(Runnable):
     def get_version(self):
         module_name = self.__module__.split(".")[0]
         return str(get_distribution(module_name))
+
+    def handle_errors(self) -> JobInfo:
+        """Handle errors that may have happened with the execution
+        of the recipe. After handling the errors, the recipe
+        returns the relevant information to restart (or not)
+        the job.
+        """
+        handler = self.ERROR_CLS(".", delete=False)
+        return handler.handle()
 
 
 class BaseRecipe(PythonRecipe):
