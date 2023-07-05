@@ -1,9 +1,13 @@
 import os
-import msgspec as msg
-from typing import List, Union, Optional
 from datetime import datetime
+from typing import List
+from typing import Optional
+from typing import Union
 
-from .base import BaseInfo, NodeResults
+import msgspec as msg
+
+from .base import BaseInfo
+from .base import NodeResults
 
 
 class JobInfo(BaseInfo):
@@ -73,6 +77,11 @@ class RunStatsInfo(BaseInfo):
     @staticmethod
     def file_name():
         return "runstats.json"
+
+    def __add__(self, other):
+        args = other.as_dict()
+        args["duration"] = self.duration + other.duration
+        return self.__class__(**args)
 
 
 class JobResults(BaseInfo):
