@@ -215,7 +215,7 @@ class BaseRecipe(PythonRecipe):
 
         if len(job_folders) > 0:
             folder = job_folders[0]
-            handler = self.ERROR_CLS(folder, delete=delete)
+            handler = self.ERROR_CLS(self.info, folder, delete=delete)
             return handler.handle()
 
         job_folders = [
@@ -223,7 +223,7 @@ class BaseRecipe(PythonRecipe):
         ]
         if len(job_folders) > 0:
             folder = job_folders[0]
-            handler = self.ERROR_CLS(folder, delete=delete)
+            handler = self.ERROR_CLS(self.info, folder, delete=delete)
             return handler.handle()
 
         info = self.info.copy()

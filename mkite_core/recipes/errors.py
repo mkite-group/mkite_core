@@ -15,26 +15,14 @@ class BaseErrorHandler(ABC):
     the engine to attempt restarting it.
     """
 
-    def __init__(self, workdir: os.PathLike, delete: bool = False):
+    def __init__(self, info: JobInfo, workdir: os.PathLike, delete: bool = False):
+        self.info = info
         self.workdir = workdir
         self.delete = delete
-        self.info = self.get_info()
-        self.runstats = self.get_runstats()
 
     def get_path(self, filename: str):
         """Join the workdir to the given `filename`."""
         return os.path.join(self.workdir, filename)
-
-    def get_info(self) -> JobInfo:
-        path = self.get_path(JobInfo.file_name())
-        return JobInfo.from_json(path)
-
-    def get_runstats(self) -> RunStatsInfo:
-        path = self.get_path(RunStatsInfo.file_name())
-        if os.path.exists(path):
-            return RunStatsInfo.from_json(path)
-
-        return None
 
     def set_status(self, info: JobInfo, status: str) -> JobInfo:
         """Updates the status of the JobInfo"""
