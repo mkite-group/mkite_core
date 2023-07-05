@@ -211,21 +211,29 @@ class BaseRecipe(PythonRecipe):
         returns the relevant information to restart (or not)
         the job.
         """
-        job_folders = self.get_existing_scratch(abspath=True)
-
-        if len(job_folders) > 0:
-            folder = job_folders[0]
-            handler = self.ERROR_CLS(self.info, folder, delete=delete)
-            return handler.handle()
-
+        tmp_folders = self.get_existing_scratch(abspath=True)
         job_folders = [
             f for f in os.listdir(".") if f.startswith(self.__class__.__name__)
         ]
-        if len(job_folders) > 0:
-            folder = job_folders[0]
-            handler = self.ERROR_CLS(self.info, folder, delete=delete)
-            return handler.handle()
 
-        info = self.info.copy()
-        info.job["status"] = Status.ERROR.value
+        if len(tmp_folders) > 0:
+            folder = job_folders[0]
+
+        elif len(job_folders) > 0:
+            folder = job_folders[0]
+
+        else:
+            # could not find any information about temporary
+            # files for the job. Return the existing job as
+            # an error
+            info = self.info.copy()
+            info.job["status"] = Status.ERROR.value
+            return info
+
+        handler = self.ERROR_CLS(self.info, folder)
+        info = handler.handle()
+
+        if delete:
+            handler.delete_scratch()
+
         return info

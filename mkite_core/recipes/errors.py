@@ -15,10 +15,9 @@ class BaseErrorHandler(ABC):
     the engine to attempt restarting it.
     """
 
-    def __init__(self, info: JobInfo, workdir: os.PathLike, delete: bool = False):
+    def __init__(self, info: JobInfo, workdir: os.PathLike):
         self.info = info
         self.workdir = workdir
-        self.delete = delete
 
     def get_path(self, filename: str):
         """Join the workdir to the given `filename`."""
@@ -29,7 +28,7 @@ class BaseErrorHandler(ABC):
         info.job["status"] = status
         return info
 
-    def delete_workdir(self):
+    def delete_scratch(self):
         shutil.rmtree(self.workdir)
 
     @abstractmethod
