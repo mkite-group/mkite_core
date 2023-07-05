@@ -5,16 +5,19 @@ import shutil
 import tempfile
 import traceback
 import subprocess
+from typing import List
 from abc import abstractmethod
 from pkg_resources import get_distribution
 
 from mkite_core.models import JobInfo, RunStatsInfo, JobResults
+from mkite_engines.status import Status
 
 from .base import Runnable
 from .settings import EnvSettings
 from .options import BaseOptions
 from .parser import BaseParser
 from .runner import BaseRunner
+from .errors import BaseErrorHandler
 
 
 class RecipeError(Exception):
@@ -109,6 +112,7 @@ class BaseRecipe(PythonRecipe):
     OPTIONS_CLS: BaseOptions = None
     PARSER_CLS: BaseParser = None
     RUNNER_CLS: BaseRunner = None
+    ERROR_CLS: BaseErrorHandler = None
 
     @abstractmethod
     def setup(self, workdir):
@@ -178,3 +182,38 @@ class BaseRecipe(PythonRecipe):
                 self.to_folder(tempdir, workdir)
                 os.chdir(basedir)
                 return results
+
+    def get_existing_scratch(self, abspath: bool = True) -> List[str]:
+        scratch = self.get_scratch()
+        job_folders = [
+            f for f in os.listdir(scratch) if f.startswith(self.info.folder_name)
+        ]
+        if not abspath:
+            return job_folders
+
+        return [os.path.join(scratch, f) for f in job_folders]
+
+    def handle_errors(self, delete: bool = True) -> JobInfo:
+        """Handle errors that may have happened with the execution
+        of the recipe. After handling the errors, the recipe
+        returns the relevant information to restart (or not)
+        the job.
+        """
+        job_folders = self.get_existing_scratch(abspath=True)
+
+        if len(job_folders) > 0:
+            folder = job_folders[0]
+            handler = self.ERROR_CLS(folder, delete=delete)
+            return handler.handle()
+
+        job_folders = [
+            f for f in os.listdir(".") if f.startswith(self.__class__.__name__)
+        ]
+        if len(job_folders) > 0:
+            folder = job_folders[0]
+            handler = self.ERROR_CLS(folder, delete=delete)
+            return handler.handle()
+
+        info = self.info.copy()
+        info.job["status"] = Status.ERROR.value
+        return info
