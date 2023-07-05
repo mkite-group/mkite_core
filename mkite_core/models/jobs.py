@@ -1,10 +1,7 @@
-import os
 from datetime import datetime
 from typing import List
 from typing import Optional
 from typing import Union
-
-import msgspec as msg
 
 from .base import BaseInfo
 from .base import NodeResults
@@ -39,10 +36,15 @@ class JobInfo(BaseInfo):
         raise ValueError("No identifier for the job")
 
     @property
-    def folder_name(self):
+    def folder_prefix(self):
         recipe_name = self.recipe.get("name", "unnamed")
+        return f"{recipe_name}_{self.uuid_short}"
+
+    @property
+    def folder_name(self):
+        prefix = self.folder_prefix
         timestamp = int(datetime.timestamp(datetime.now()))
-        return f"{recipe_name}_{self.uuid_short}_{timestamp}"
+        return f"{prefix}_{timestamp}"
 
     @classmethod
     def from_job(cls, job: "Job") -> "JobInfo":

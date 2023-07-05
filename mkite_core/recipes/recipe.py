@@ -198,14 +198,14 @@ class BaseRecipe(PythonRecipe):
     def get_existing_scratch(self, abspath: bool = True) -> List[str]:
         scratch = self.get_scratch()
         job_folders = [
-            f for f in os.listdir(scratch) if f.startswith(self.info.folder_name)
+            f for f in os.listdir(scratch) if f.startswith(self.info.folder_prefix)
         ]
         if not abspath:
             return job_folders
 
         return [os.path.join(scratch, f) for f in job_folders]
 
-    def handle_errors(self, delete: bool = True) -> JobInfo:
+    def handle_errors(self, delete: bool = False) -> JobInfo:
         """Handle errors that may have happened with the execution
         of the recipe. After handling the errors, the recipe
         returns the relevant information to restart (or not)
