@@ -205,7 +205,7 @@ class BaseRecipe(PythonRecipe):
 
         return [os.path.join(scratch, f) for f in job_folders]
 
-    def handle_errors(self, delete: bool = False) -> JobInfo:
+    def handle_errors(self, delete_scratch: bool = False) -> JobInfo:
         """Handle errors that may have happened with the execution
         of the recipe. After handling the errors, the recipe
         returns the relevant information to restart (or not)
@@ -217,7 +217,7 @@ class BaseRecipe(PythonRecipe):
         ]
 
         if len(tmp_folders) > 0:
-            folder = job_folders[0]
+            folder = tmp_folders[0]
 
         elif len(job_folders) > 0:
             folder = job_folders[0]
@@ -233,7 +233,7 @@ class BaseRecipe(PythonRecipe):
         handler = self.ERROR_CLS(self.info, folder)
         info = handler.handle()
 
-        if delete:
+        if delete_scratch:
             handler.delete_scratch()
 
         return info

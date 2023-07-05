@@ -36,3 +36,9 @@ class RecipeChain(Runnable):
                 info = job.run()
 
         return results
+
+    def handle_errors(self, delete_scratch: bool = False) -> JobInfo:
+        # use handle_errors from the first recipe
+        jcls = [j for j in self.JOBS if issubclass(j, BaseRecipe)][0]
+        job = jcls(self.info, settings_path=self.settings_path)
+        return job.handle_errors()
