@@ -217,10 +217,10 @@ class BaseRecipe(PythonRecipe):
         ]
 
         if len(tmp_folders) > 0:
-            folder = tmp_folders[0]
+            folder = sorted(tmp_folders)[-1]
 
         elif len(job_folders) > 0:
-            folder = job_folders[0]
+            folder = sorted(job_folders)[-1]
 
         else:
             # could not find any information about temporary
