@@ -1,6 +1,8 @@
 import os
+from typing import List
+from typing import Tuple
+
 import msgspec as msg
-from typing import List, Tuple
 
 from .base import BaseInfo
 from .formula import FormulaInfo
@@ -128,7 +130,7 @@ class ConformerInfo(BaseInfo):
 
         minf = RdkitInterface(mol, **kwargs)
 
-        return [cls.from_dict(cdict) for cdict in minf.conformer_dict]
+        return minf.conformer_info
 
     @classmethod
     def from_pymatgen(

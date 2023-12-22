@@ -1,3 +1,4 @@
+from typing import List
 import rdkit.Chem.AllChem as Chem
 
 from mkite_core.models import FormulaInfo, MoleculeInfo, ConformerInfo
@@ -83,7 +84,7 @@ class RdkitInterface:
         )
 
     @property
-    def conformer_info(self) -> dict:
+    def conformer_info(self) -> List[dict]:
         if self.num_conformers == 0:
             return {}
 
