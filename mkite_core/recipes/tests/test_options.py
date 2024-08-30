@@ -35,4 +35,4 @@ class TestOptions(ut.TestCase):
 
     def test_dict(self):
         opts = MockOpts(char="a")
-        self.assertIsInstance(opts.dict(), dict)
+        self.assertIsInstance(opts.model_dump(), dict)

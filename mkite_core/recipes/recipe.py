@@ -8,10 +8,7 @@ import traceback
 from abc import abstractmethod
 from typing import List
 
-from mkite_core.models import JobInfo
-from mkite_core.models import JobResults
-from mkite_core.models import RunStatsInfo
-from mkite_engines.status import Status
+from mkite_core.models import JobInfo, JobResults, RunStatsInfo, Status
 from pkg_resources import get_distribution
 
 from .base import Runnable
@@ -69,7 +66,7 @@ class PythonRecipe(Runnable):
 
     def get_options(self):
         """Builds an options dictionary for recipes"""
-        options = self.OPTIONS_CLS().dict()
+        options = self.OPTIONS_CLS().model_dump()
         options = BaseOptions.dict_update(options, self.info.options)
         return options
 

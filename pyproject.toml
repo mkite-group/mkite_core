@@ -14,7 +14,7 @@ keywords = ["workflow", "materials-science"]
 dependencies = [
     "msgspec >= 0.14.1",
     "click",
-    "pydantic>=1.10,<2.0",
+    "pydantic>=2.0",
     "ase",
     "pymatgen",
     "rdkit",
