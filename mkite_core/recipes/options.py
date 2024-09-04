@@ -8,9 +8,15 @@ class BaseOptions(BaseModel):
         if isinstance(u, BaseModel):
             u = u.model_dump()
 
+        if isinstance(d, BaseModel):
+            new = d.model_dump()
+        else:
+            new = d.copy()
+
         for k, v in u.items():
             if isinstance(v, collections.abc.Mapping):
-                d[k] = BaseOptions.dict_update(d.get(k, {}), v)
+                new[k] = BaseOptions.dict_update(new.get(k, {}), v)
             else:
-                d[k] = v
-        return d
+                new[k] = v
+
+        return new
