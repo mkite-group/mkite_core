@@ -86,9 +86,12 @@ class PythonRecipe(Runnable):
 
     def get_run_stats(self, duration: float, num_cores: bool = False) -> RunStatsInfo:
         ncores = os.cpu_count() if num_cores else 1
+        host = socket.gethostname()
+        cluster = socket.gethostbyname(host)
+
         return RunStatsInfo(
-            host=socket.gethostname(),
-            cluster=socket.getfqdn(),
+            host=host[:64],
+            cluster=cluster[:64],
             duration=round(duration, 6),
             ncores=ncores,
             ngpus=0,

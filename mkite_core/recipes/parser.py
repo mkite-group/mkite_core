@@ -43,9 +43,12 @@ class BaseParser(ABC):
     def get_runstats(self):
         import socket
 
+        host = socket.gethostname()
+        cluster = socket.gethostbyname(host)
+
         info = {
-            "host": socket.gethostname(),
-            "cluster": socket.getfqdn(),
+            "host": host[:64],
+            "cluster": cluster[:64],
         }
 
         path = os.path.join(self.workdir, RunStatsInfo.file_name())
