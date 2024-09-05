@@ -35,21 +35,24 @@ class RdkitInterface:
         return cls(mol)
 
     @property
+    def _mol(self) -> Chem.Mol:
+        return Chem.MolFromSmiles(self._smiles)
+
+    @property
     def smiles(self) -> str:
         """Gets the canonical SMILES of a Mol. The
         double conversion is necessary to canonize
         the SMILES and eliminate hydrogens from
         the original Mol"""
-        _mol = Chem.MolFromSmiles(self._smiles)
-        return Chem.MolToSmiles(_mol, isomericSmiles=self.stereochemistry)
+        return Chem.MolToSmiles(self._mol, isomericSmiles=self.stereochemistry)
 
     @property
     def inchi(self) -> str:
-        return Chem.MolToInchi(self.mol)
+        return Chem.MolToInchi(self._mol)
 
     @property
     def inchikey(self) -> str:
-        return Chem.MolToInchiKey(self.mol)
+        return Chem.MolToInchiKey(self._mol)
 
     def add_hydrogens(self) -> Chem.Mol:
         return Chem.AddHs(self.mol)
