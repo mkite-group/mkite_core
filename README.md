@@ -31,7 +31,7 @@ Contributions to the entire mkite suite are welcomed.
 You can send a pull request or open an issue for this plugin or either of the packages in mkite.
 When doing so, please adhere to the [Code of Conduct](CODE_OF_CONDUCT.md) in the mkite suite.
 
-The mkite package was created by Daniel Schwalbe-Koda <dskoda@llnl.gov>.
+The mkite package was created by Daniel Schwalbe-Koda <dskoda@ucla.edu>.
 
 ### Citing mkite
 
