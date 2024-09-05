@@ -4,9 +4,9 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mkite_core"
-version = "0.1.0"
+version = "24.09.05"
 description = "distributed computing for high-throughput materials simulation"
-authors = [{name = "Daniel Schwalbe-Koda", email = "dskoda@llnl.gov"}]
+authors = [{name = "Daniel Schwalbe-Koda", email = "dskoda@ucla.edu"}]
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.8"
