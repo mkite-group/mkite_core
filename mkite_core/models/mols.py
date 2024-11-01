@@ -29,6 +29,7 @@ class MoleculeInfo(BaseInfo):
             smiles=data["smiles"],
             siteprops=data.get("siteprops", {}),
             attributes=data.get("attributes", {}),
+            formula=data.get("formula", None),
         )
 
     @classmethod
@@ -38,6 +39,7 @@ class MoleculeInfo(BaseInfo):
             smiles=molecule.smiles,
             siteprops=molecule.siteprops,
             attributes=molecule.attributes,
+            formula=molecule.formula,
         )
 
     @classmethod
