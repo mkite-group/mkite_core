@@ -4,6 +4,9 @@ from datetime import datetime
 from abc import ABC, abstractmethod
 
 
+NOT_COPY_PREFIX = ["core."]
+
+
 class Runnable(ABC):
     @abstractmethod
     def run(self):
@@ -22,8 +25,19 @@ class Runnable(ABC):
         os.chdir(dst)
 
 
+def _skip_file(fname: str):
+    for prefix in NOT_COPY_PREFIX:
+        if fname.startswith(prefix):
+            return True
+
+    return False
+
+
 def _smart_copy(src, dst):
     for f in os.listdir(src):
+        if _skip_file(f):
+            continue
+
         src_path = os.path.join(src, f)
 
         if os.path.abspath(src_path) == os.path.abspath(dst):
