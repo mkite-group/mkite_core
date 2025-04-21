@@ -1,6 +1,4 @@
-import os
-from typing import List
-from typing import Tuple
+from typing import List, Tuple
 
 import msgspec as msg
 
@@ -111,7 +109,6 @@ class ConformerInfo(BaseInfo):
     def from_conformer(
         cls, conformer: "mkite.midware.models.Conformer"
     ) -> "ConformerInfo":
-
         if conformer.mol is not None:
             mol = conformer.mol.as_info()
         else:
@@ -149,7 +146,7 @@ class ConformerInfo(BaseInfo):
     def from_ase(cls, atoms: "ase.Atoms", **kwargs) -> "ConformerInfo":
         return cls(
             species=list(atoms.get_chemical_symbols()),
-            coords=list(atoms.positions),
+            coords=atoms.positions.tolist(),
             attributes=atoms.info,
             **kwargs,
         )
@@ -182,4 +179,5 @@ class ConformerInfo(BaseInfo):
         props_eq = self.siteprops == other.siteprops
         attrs_eq = self.attributes == other.attributes
 
+        return all([species_eq, coords_eq, props_eq, attrs_eq])
         return all([species_eq, coords_eq, props_eq, attrs_eq])
