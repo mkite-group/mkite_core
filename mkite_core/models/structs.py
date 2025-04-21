@@ -99,9 +99,9 @@ class CrystalInfo(BaseInfo):
     @classmethod
     def from_ase(cls, atoms: "ase.Atoms", **kwargs):
         return cls(
-            lattice=atoms.cell,
-            species=atoms.get_chemical_symbols(),
-            coords=atoms.positions,
+            lattice=list(atoms.cell),
+            species=list(atoms.get_chemical_symbols()),
+            coords=list(atoms.positions),
             attributes=atoms.info,
             **kwargs,
         )

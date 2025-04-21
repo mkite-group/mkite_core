@@ -148,8 +148,8 @@ class ConformerInfo(BaseInfo):
     @classmethod
     def from_ase(cls, atoms: "ase.Atoms", **kwargs) -> "ConformerInfo":
         return cls(
-            species=atoms.get_chemical_symbols(),
-            coords=atoms.positions,
+            species=atoms.get_chemical_symbols().tolist(),
+            coords=atoms.positions.tolist(),
             attributes=atoms.info,
             **kwargs,
         )
