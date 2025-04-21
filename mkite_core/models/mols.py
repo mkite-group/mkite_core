@@ -140,7 +140,7 @@ class ConformerInfo(BaseInfo):
     ) -> "ConformerInfo":
         return cls(
             species=[str(sp) for sp in molecule.species],
-            coords=molecule.cart_coords.tolist(),
+            coords=list(molecule.cart_coords),
             siteprops=molecule.site_properties,
             **kwargs,
         )
@@ -148,8 +148,8 @@ class ConformerInfo(BaseInfo):
     @classmethod
     def from_ase(cls, atoms: "ase.Atoms", **kwargs) -> "ConformerInfo":
         return cls(
-            species=atoms.get_chemical_symbols().tolist(),
-            coords=atoms.positions.tolist(),
+            species=list(atoms.get_chemical_symbols()),
+            coords=list(atoms.positions),
             attributes=atoms.info,
             **kwargs,
         )
