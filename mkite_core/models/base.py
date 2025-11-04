@@ -69,3 +69,8 @@ class CalcInfo(BaseInfo):
             "@module": "mkite.orm.base.models",
             "@class": "CalcNode",
         }
+
+    def set_calctype(self, name: str):
+        self.calctype["name"] = name
+        self.calctype["@module"] = "mkite_db.orm.base.models"
+        self.calctype["@class"] = "CalcType"
