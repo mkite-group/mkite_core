@@ -1,5 +1,4 @@
-from .base import BaseInfo, NodeResults
-from .formula import FormulaInfo
+from .base import BaseInfo, NodeResults, CalcInfo
 from .jobs import JobInfo, JobResults, RunStatsInfo
 from .structs import CrystalInfo, SpaceGroupInfo
 from .calcs import EnergyForcesInfo, FeatureInfo

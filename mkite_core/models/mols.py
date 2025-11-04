@@ -3,13 +3,11 @@ from typing import List, Tuple
 import msgspec as msg
 
 from .base import BaseInfo
-from .formula import FormulaInfo
 
 
 class MoleculeInfo(BaseInfo):
     inchikey: str
     smiles: str
-    formula: FormulaInfo = None
     siteprops: dict = {}
     attributes: dict = {}
 
@@ -27,17 +25,15 @@ class MoleculeInfo(BaseInfo):
             smiles=data["smiles"],
             siteprops=data.get("siteprops", {}),
             attributes=data.get("attributes", {}),
-            formula=data.get("formula", None),
         )
 
     @classmethod
-    def from_molecule(cls, molecule: "mkite.midware.models.Molecule") -> "MoleculeInfo":
+    def from_molecule(cls, molecule: "mkite.orm.models.Molecule") -> "MoleculeInfo":
         return cls(
             inchikey=molecule.inchikey,
             smiles=molecule.smiles,
             siteprops=molecule.siteprops,
             attributes=molecule.attributes,
-            formula=molecule.formula,
         )
 
     @classmethod
@@ -79,7 +75,6 @@ class ConformerInfo(BaseInfo):
     species: List[str]
     coords: List[Tuple[float, float, float]]
     mol: MoleculeInfo = None
-    formula: FormulaInfo = None
     siteprops: dict = {}
     attributes: dict = {}
 
@@ -115,7 +110,6 @@ class ConformerInfo(BaseInfo):
             mol = None
 
         return cls(
-            formula=conformer.formula.as_info(),
             mol=mol,
             species=conformer.species,
             coords=conformer.coords,
