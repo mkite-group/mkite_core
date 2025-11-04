@@ -71,6 +71,8 @@ class CalcInfo(BaseInfo):
         }
 
     def set_calctype(self, name: str):
+        if self.calctype is None:
+            self.calctype = {}
         self.calctype["name"] = name
         self.calctype["@module"] = "mkite_db.orm.base.models"
         self.calctype["@class"] = "CalcType"
