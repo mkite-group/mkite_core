@@ -57,3 +57,22 @@ class BaseInfo(msg.Struct):
 class NodeResults(BaseInfo):
     chemnode: dict
     calcnodes: List[dict] = []
+
+
+class CalcInfo(BaseInfo):
+    calctype: dict = None
+    data: dict = {}
+
+    @property
+    def extra_dict_fields(self):
+        return {
+            "@module": "mkite.orm.base.models",
+            "@class": "CalcNode",
+        }
+
+    def set_calctype(self, name: str):
+        if self.calctype is None:
+            self.calctype = {}
+        self.calctype["name"] = name
+        self.calctype["@module"] = "mkite_db.orm.base.models"
+        self.calctype["@class"] = "CalcType"

@@ -78,10 +78,7 @@ class RdkitInterface:
 
     @property
     def molecule_info(self) -> dict:
-        finfo = get_formula_info(self.add_hydrogens())
-
         return MoleculeInfo(
-            formula=finfo,
             inchikey=self.inchikey,
             smiles=self.smiles,
         )
@@ -98,7 +95,6 @@ class RdkitInterface:
             coords = conf.GetPositions().tolist()
 
             conf_info = ConformerInfo(
-                formula=finfo,
                 species=self.symbols,
                 coords=coords,
                 mol=self.molecule_info,
