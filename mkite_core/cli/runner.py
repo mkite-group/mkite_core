@@ -46,7 +46,7 @@ class RunnerCmd:
 
         info = CrystalInfo.from_ase(atoms)
 
-        jinfo = JobInfo(job={}, options={}, recipe={"name": recipe}, inputs=[info])
+        jinfo = JobInfo(job={}, options={}, recipe={"name": recipe}, inputs=[info.as_dict()])
         jinfo.job["uuid"] = jinfo.create_uuid()
 
         return cls(jinfo, recipe, settings_path)
